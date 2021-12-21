@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
+
+const initial = { background: '#00f' };
+const animate = { background: '#333', borderRadius: 45, rotate: 360 };
+const transition = { duration: 4, repeat: Infinity, repeatType: 'mirror' };
 
 function App() {
+  const someProps = { doThing: true };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <MotionBox
+        // causes warning to display in the console
+        someProps={someProps}
+        initial={initial}
+        animate={animate}
+        transition={transition}
+      ></MotionBox>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  height: 100%;
+  display: grid;
+  place-items: center;
+`;
+
+const MotionBox = styled(motion.div)`
+  height: 25vw;
+  width: 25vw;
+`;
 
 export default App;
